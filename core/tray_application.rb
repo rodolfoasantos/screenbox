@@ -6,7 +6,7 @@ class TrayApplication
   import org.eclipse.swt.widgets.TrayItem;
 
   def initialize
-    @display = display = Swt::Widgets::Display.new
+    @display = Swt::Widgets::Display.new
     @shell   = Swt::Widgets::Shell.new(@display)
     @menu    = Swt::Widgets::Menu.new(@shell, Swt::SWT::POP_UP)
     @image   = Swt::Graphics::Image.new(@display, 16, 16)
@@ -31,8 +31,7 @@ class TrayApplication
   end
 
   def run
-    system_tray = @display.get_system_tray
-    tray        = TrayItem.new(system_tray, Swt::SWT::NONE)
+    tray = TrayItem.new(@display.get_system_tray, Swt::SWT::NONE)
     tray.add_listener Swt::SWT::MenuDetect, Proc.new { |event| @menu.set_visible true }
     tray.set_image @image
 

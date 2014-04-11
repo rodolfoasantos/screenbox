@@ -8,8 +8,7 @@ class Screenshot
 
   def self.capture
     robot = Robot.new
-    resolution = screen_resolution
-    retangle = Rectangle.new 0, 0, resolution.get_width, resolution.get_height
+    retangle = Rectangle.new 0, 0, screen_resolution.get_width, screen_resolution.get_height
     image = robot.create_screen_capture(retangle)
     file  = java::io::File.new(file_name_pattern)
     ImageIO::write(image, "png", file)
@@ -17,7 +16,7 @@ class Screenshot
 
   private
   def self.screen_resolution
-    Toolkit.get_default_toolkit.get_screen_size
+    @tollkit ||= Toolkit.get_default_toolkit.get_screen_size
   end
 
   def self.file_name_pattern

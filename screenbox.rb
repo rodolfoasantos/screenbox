@@ -9,4 +9,8 @@ app.add_item "Screenshot" do
   Screenshot.capture
 end
 
+app.add_item "Exit" do
+  java.lang.System::exit(0)
+end
+
 app.run
