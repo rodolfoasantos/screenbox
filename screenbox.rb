@@ -1,5 +1,5 @@
-require 'screenshot'
-require 'tray_application'
+require 'core/screenshot'
+require 'core/tray_application'
 
 app = TrayApplication.new
 

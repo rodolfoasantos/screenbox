@@ -13,7 +13,6 @@ class Screenshot
     image = robot.create_screen_capture(retangle)
     file  = java::io::File.new(file_name_pattern)
     ImageIO::write(image, "png", file)
-    p file
   end
 
   private

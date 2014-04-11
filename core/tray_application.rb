@@ -39,8 +39,6 @@ class TrayApplication
     while !@shell.is_disposed?
       @display.sleep unless @display.read_and_dispatch
     end
-
-    @display.dispose
   end
 
 end
