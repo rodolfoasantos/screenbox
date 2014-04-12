@@ -4,6 +4,7 @@ require 'swt'
 class TrayApplication
 
   import org.eclipse.swt.widgets.TrayItem;
+  import org.eclipse.swt.browser.Browser;
 
   def initialize
     @display = Swt::Widgets::Display.new
@@ -28,6 +29,13 @@ class TrayApplication
       puts detail.backtrace.join("\n")
       @image = Swt::Graphics::Image.new(@display, 16, 16)
     end
+  end
+
+  def open_web_view(url)
+    browser  = Browser.new(@shell,Swt::SWT::NONE)
+    browser.set_bounds 0,0,600,400
+    browser.setUrl(url);
+    @shell.open
   end
 
   def run
