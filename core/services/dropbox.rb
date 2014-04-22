@@ -4,7 +4,7 @@ require 'yaml'
 module Services
   class Dropbox
 
-    DEFAULT_PATH = "/core/services/dropbox/"
+    DEFAULT_CONF_PATH = "core/services/dropbox/"
     DEFAULT_UPLOAD_PATH = "/public/"
 
     def initialize
@@ -20,7 +20,7 @@ module Services
       @flow.start()
     end
 
-    def authorizate(code)
+    def authorize(code)
       token, use_id = @flow.finish(code)
       @client = DropboxClient.new(token)
     end
@@ -28,17 +28,17 @@ module Services
     def linked_account
       @client.account_info() unless @client.nil?
     end
-
-    def upload_file(filename, file)
+#Pk08anIKHSoAAAAAAAAAyBd1751VN24_6E2MWsT-AP4
+    def upload_file(file)
       begin
-        response = @client.put_file(DEFAULT_UPLOAD_PATH + filename, file)
+        response = @client.put_file(DEFAULT_UPLOAD_PATH + file.get_name, file)
       raise DropboxError.new("error when try to upload the screenshot") if response["modified"].nil?
       end
     end
 
     private
     def load_keys
-      @access ||= YAML.load(File.open(DEFAULT_PATH + "keys.yml"))
+      @access ||= YAML.load(File.open(DEFAULT_CONF_PATH + "keys.yml"))
     end
 
   end

@@ -8,7 +8,8 @@ dropbox = Services::Dropbox.new
 app.set_tray_image '/images/camera.png'
 
 app.add_item "Screenshot" do
-  Screenshot.capture
+  file = Screenshot.capture
+  dropbox.upload_file(file)
 end
 
 app.add_item "Exit" do
