@@ -28,7 +28,6 @@ module Services
     def linked_account
       @client.account_info() unless @client.nil?
     end
-#Pk08anIKHSoAAAAAAAAAyBd1751VN24_6E2MWsT-AP4
     def upload_file(file)
       begin
         response = @client.put_file(DEFAULT_UPLOAD_PATH + file.get_name, file)
